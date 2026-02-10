@@ -1,0 +1,33 @@
+body{
+      background-color:#5CACC4;   
+      font-family: Arial;
+      margin:0;
+      padding: 0;
+}
+header{
+      background-color: rgba(236, 155, 25, 0.4);
+      color:#8CD19D;  
+      text-align: center;
+      padding: 20px;
+}
+
+section{
+      background-color:rgba(44, 230, 224, 0.796); 
+      width: 80%;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 5px;
+}  
+
+h2{
+      color:#8CD19D;
+}
+ul{
+      list-style: square;
+}
+
+footer{
+      text-align: center;
+      padding: 10px;
+      background-color:#CEE879;
+};
