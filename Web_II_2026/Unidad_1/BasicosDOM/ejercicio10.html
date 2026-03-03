@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10 uso de appendchild</title>
+</head>
+<body>
+    <div id="contenedor">Contenedor Inicial</div>
+    <button id="boton">Agregar Elemento</button>
+    <script>
+        const nuevo_elemento=document.createElement('div')// para crear elementos html
+        nuevo_elemento.textContent='Elemento creado con dom'
+        const contenedor=document.getElementById('contenedor')
+        contenedor.appendChild(nuevo_elemento)//agrega el nuevo hijo
+        console.log(contenedor1)
+    </script>
+</body>
+</html>
