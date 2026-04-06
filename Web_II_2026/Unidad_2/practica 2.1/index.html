@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiantes - Práctica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Registro de Alumnos</h1>
+            <p>Formulario de datos personales</p>
+        </header>
+
+        <section class="form-section">
+            <div class="inputs-grid">
+                <input type="text" id="nombre" placeholder="Nombre completo">
+                <input type="text" id="curso" placeholder="Curso">
+                <input type="number" id="edad" placeholder="Edad">
+                <input type="number" id="hermanos" placeholder="Nº de hermanos">
+                <input type="text" id="ciudad" placeholder="Ciudad de nacimiento">
+            </div>
+            <button id="btnAction" class="btn-add">Registrar</button>
+        </section>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Edad</th>
+                        <th>Hermanos</th>
+                        <th>Ciudad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaAlumnos">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
