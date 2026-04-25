@@ -1,40 +1,148 @@
-import { clientService } from "../service/client-service.js";
-const crearNuevaLinea = (nombre, email, id) => {
-  const linea = document.createElement("tr");
-  const contenido = `
-    <td class="td" data-td>${nombre}</td>
+//recepcion de datos
+/*
+const crearFila = (nombre, email) => {
+    const fila = document.createElement('tr');//con esto creamos nua fila
+    //html como variable
+    const contenido = `
+    <td class="td" data-td>
+        ${nombre}
+    </td>
     <td>${email}</td>
     <td>
-      <ul class="table__button-control">
+        <ul class="table__button-control">
         <li>
-          <a href="../screens/editar_cliente.html?id=${id}" class="simple-button simple-button--edit">Editar</a>
+            <a
+            href="../screens/editar_cliente.html"
+            class="simple-button simple-button--edit"
+            >
+            Editar
+            </a>
         </li>
         <li>
-          <button class="simple-button simple-button--delete" type="button" id="${id}">
+            <button class="simple-button simple-button--delete" type="button">
             Eliminar
-          </button>
+            </button>
         </li>
-      </ul>
-    </td>`;
-  linea.innerHTML = contenido;
-  
-    
-  return linea;
+        </ul>
+    </td>
+    `
+;
+fila.innerHTML = contenido;
+return fila;
+}
+*/
+//const table = document.querySelector('[data-table]');
+/*
+const listar_clientes = () => {
+    const  promesa = new Promise((resolve,reject)=>{
+        const http =  new XMLHttpRequest();//esta es una variable para el request http
+        http.open("GET", "http://localhost:3001/perfil");
+        http.send();
+        http.onload = () => {
+            const response = JSON.parse(http.response);
+            if(http.response >= 400){
+                reject(response)
+            }else{
+                resolve(response)
+            }
+        }
+    })
+    return promesa;
+}
+listar_clientes()
+    .then((data) => {
+        data.forEach((perfil) =>{
+            const nuevafila = crearFila(perfil.nombre, perfil.email);
+            table.appendChild(nuevafila)
+        });
+})
+    .catch((error) => alert("sin conexion"));
+*/
+//-------optimizado--------//
+/*
+const listar_clientes = () => fetch("http://localhost:3001/perfil")
+.then((respuesta) => respuesta.json());
+
+const crearCliente = (nombre, email) => {
+    return fetch("http://localhost:3001/perfil",{ 
+        method: "POST",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify({nombre, email, id:uuid.v4()})
+    });    
 };
 
-const table = document.querySelector("[data-table]");
+const actualizarCliente = (nombre, email, id) => {// Solo aqui el nombre y email menos id
+    return fetch(`http://localhost:3001/perfil/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ nombre, email })
+    })
+    .then(respuesta => console.log(respuesta)) 
+    .catch((error) => console.log(error));
+};
+
+const eliminarCliente = (id) => {
+    console.log("eliminar");
+    return fetch(`http://localhost:3001/perfil/${id}`,{
+        method: "DELETE"
+    })
+    .then(respuesta => console.log(respuesta)) 
+    .catch((error) => console.log(error));
+};
+const cliente = (id) => {
+    return fetch(`http://localhost:3001/perfil/${id}`)
+    .then((respuesta) =>respuesta.json());
+}*/
 
 
-clientService.listarClientes()
-  .then((data) => {
-    
-    data.forEach(({ nombre, email, id }) => {
-      
-      const nuevaLinea = crearNuevaLinea(nombre, email, id);
-      table.appendChild(nuevaLinea);
+// ESTO ES CON MYSQL
+const API_BASE_URL = "http://127.0.0.1/API/conexion.php";
+
+const listar_clientes = () =>{
+    return fetch(API_BASE_URL).then(response =>{
+        if(response.ok)throw new Error('error clientes');
+        return response.json();
+    })
+}
+
+const crearCliente = (nombre, email)=> {
+    return fetch(API_BASE_URL,{
+        method: "POST",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify({nombre, email, id: uuid.v4()})
+    }).then(response =>{
+        if(!response.ok);
+        return response.json();
+    })
+};
+const eliminarCliente = (id) =>{
+    return fetch(`${API_BASE_URL}?id = ${id}`,{
+        method: "DELETE"
     });
-  })
-  .catch((error) => {
-    alert("Ocurrió un error al cargar los datos");
-    console.log(error);
-  });
+};
+const actualizarCliente = (nombre, email, id)=>{
+    return fetch(API_BASE_URL,{
+        method: "PUT",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify({nombre, email, id})
+    }).then(respuesta => console.log(respuesta)).catch((err) => console.log(err));
+};
+const cliente = (id) =>{
+    return fetch(`${API_BASE_URL}id?=${id}`
+        .then((respuesta)=> respuesta.json()));
+};
+export const clientService ={
+    listar_clientes,
+    crearCliente,
+    eliminarCliente,
+    actualizarCliente,
+    cliente
+};

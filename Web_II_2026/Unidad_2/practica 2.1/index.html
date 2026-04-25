@@ -10,35 +10,41 @@
 
     <div class="container">
         <header>
-            <h1>Registro de Alumnos</h1>
-            <p>Formulario de datos personales</p>
+            <h1> Registro de Alumnos</h1>
+            <p>Gestión de datos personales y académicos</p>
+            <div class="stats-bar">
+                <span class="stat"><strong id="totalAlumnos">0</strong> Alumnos registrados</span>
+            </div>
         </header>
 
         <section class="form-section">
-            <div class="inputs-grid">
-                <input type="text" id="nombre" placeholder="Nombre completo">
-                <input type="text" id="curso" placeholder="Curso">
-                <input type="number" id="edad" placeholder="Edad">
-                <input type="number" id="hermanos" placeholder="Nº de hermanos">
-                <input type="text" id="ciudad" placeholder="Ciudad de nacimiento">
+            <div class="form-header">
+                <h2>Agregar nuevo alumno</h2>
             </div>
-            <button id="btnAction" class="btn-add">Registrar</button>
+            <form class="inputs-grid" id="formRegistro">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required aria-label="Nombre del estudiante">
+                <input type="text" id="curso" name="curso" placeholder="Ej: 1° A, 2° B" required aria-label="Curso del estudiante">
+                <input type="number" id="edad" name="edad" placeholder="Edad" required min="1" max="120" aria-label="Edad del estudiante">
+                <input type="number" id="hermanos" name="hermanos" placeholder="Nº de hermanos" min="0" max="20" aria-label="Número de hermanos">
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de nacimiento" required aria-label="Ciudad de nacimiento">
+                <button type="submit" id="btnAction" class="btn-add">+ Registrar</button>
+            </form>
         </section>
 
         <div class="table-wrapper">
-            <table>
+            <table aria-label="Tabla de registro de estudiantes">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Curso</th>
-                        <th>Edad</th>
-                        <th>Hermanos</th>
-                        <th>Ciudad</th>
-                        <th>Acciones</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Hermanos</th>
+                        <th scope="col">Ciudad</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="listaAlumnos">
-                    </tbody>
+                </tbody>
             </table>
         </div>
     </div>

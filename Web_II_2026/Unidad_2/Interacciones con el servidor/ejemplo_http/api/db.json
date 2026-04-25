@@ -1,0 +1,23 @@
+{
+  "posts": [
+    {
+      "id": "2",
+      "titulo": "Nuevo Post Creado",
+      "descripcion": "Econtenido ",
+      "fecha": "2025-03-27"
+    },
+    {
+      "titulo": "ACTUALIZADO",
+      "descripcion": "ACTUALIZADO",
+      "fecha": "2026-03-23T17:14:57.299Z",
+      "id": "1"
+    },
+    {
+      "titulo": "nuevo post",
+      "descripcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T17:14:55.452Z",
+      "id": "z9KCC1WtVD4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
